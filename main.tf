@@ -36,8 +36,16 @@ resource "tfe_variable" "test-var" {
 
   lifecycle {
     postcondition {
+      condition = self.value == "test_Vars"
+      error_message = "var name postcondition failed 1"
+    }
+    postcondition {
       condition = self.value == "test_Var"
-      error_message = "var name postcondition failed"
+      error_message = "var name postcondition passed 2"
+    }
+    postcondition {
+      condition = self.value == "test_Var0"
+      error_message = "var name postcondition failed 3"
     }
   }
 }
